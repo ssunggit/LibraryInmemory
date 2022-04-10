@@ -49,9 +49,6 @@ public class BookImpl implements Book {
 				if (UserImpl.loginUserID.equals(bookList.get(i).getUserId())) {
 					System.out.println("● " + bookList.get(i).getTitle());
 					test = 1;
-				} else {
-					System.out.println("→ 대여한 책이 없습니다.");
-					break;
 				}
 			}
 		}
@@ -67,12 +64,16 @@ public class BookImpl implements Book {
 				}
 
 			}
+		} else {
+			System.out.println("→ 대여한 책이 없습니다.");
+
 		}
 
 	}
 
 	@Override
 	public void myRentalCheck() {
+		int test = 0;
 		if (bookList.size() > 0) {
 			int cnt = 1;
 			System.out.println("------------------ < 나의 대여 목록 > ------------------");
@@ -81,9 +82,11 @@ public class BookImpl implements Book {
 					System.out.print("[" + cnt + "]  ");
 					System.out.println(bookList.get(i).getTitle());
 					cnt++;
+					test = 1;
 				}
 			}
-		} else {
+		}
+		if (test == 0) {
 			System.out.println("→ 대여목록이 없습니다.");
 		}
 	}
